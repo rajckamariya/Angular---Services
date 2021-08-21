@@ -5,21 +5,20 @@ import { LoggingService } from './../logging.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService, AccountService]
+  providers: [LoggingService]
 })
 export class AccountComponent {
   @Input() accountEl: { name: string; status: string };
   @Input() id: number;
 
   //log = new LoggingService();
-  constructor(
-    private loggingService: LoggingService,
-    private accountService: AccountService
-  ) {}
+  constructor(private accountService: AccountService) {
+    this.accountService.statusUpdate.subscribe((status: string) => {
+      alert('New Acount Status:' + status);
+    });
+  }
 
   onSetTo(status: string) {
-    this.accountService.updateStatus(this.id, this.accountEl.status);
-    //this.log.logStatusChange(status);
-    this.loggingService.logStatusChange(status);
+    this.accountService.updateStatus(this.id, status);
   }
 }

@@ -13,16 +13,13 @@ import { LoggingService } from '../logging.service';
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
-  providers: [LoggingService, AccountService]
+  providers: [LoggingService]
 })
 export class NewAccountComponent implements OnInit {
   @ViewChild('nameInput', { static: false }) accName: ElementRef;
   @ViewChild('typeInput', { static: false }) accType: ElementRef;
 
-  constructor(
-    private loggingService: LoggingService,
-    private accountService: AccountService
-  ) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {}
 
@@ -31,6 +28,6 @@ export class NewAccountComponent implements OnInit {
       this.accName.nativeElement.value,
       this.accType.nativeElement.value
     );
-    this.loggingService.logStatusChange(this.accType.nativeElement.value);
+    this.accountService.statusUpdate.emit(this.accType.nativeElement.value);
   }
 }

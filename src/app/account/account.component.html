@@ -1,6 +1,12 @@
 <div class="row">
-  <div class="col-xs-12">
-    <label>Account Name</label>
-    <input type="text" class="form-control">
+  <div class="col-md-12 col-xs-12">
+    <div class="box">
+      <h5>{{accountEl.name}}</h5>
+      <hr>
+      <p>This account is {{accountEl.status}}</p>
+      <button class="btn btn-primary" (click)="onSetTo('active')">Set to 'Active'</button>
+      <button class="btn btn-danger" (click)="onSetTo('inactive')">Set to 'Inactive'</button>
+      <button class="btn btn-warning" (click)="onSetTo('unknown')">Set to 'Unknown'</button>
+    </div>
   </div>
 </div>
